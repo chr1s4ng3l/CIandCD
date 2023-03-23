@@ -11,7 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-private const val TAG = "QuoteViewModel"
+//private const val TAG = "QuoteViewModel"
 @HiltViewModel
 class QuoteViewModel @Inject constructor(
     private val getQuotesUseCase: GetQuotesUseCase,
@@ -25,7 +25,7 @@ class QuoteViewModel @Inject constructor(
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getQuotesUseCase()
-            Log.d(TAG, "onCreate: ")
+            //Log.d(TAG, "onCreate: ")
             if (!result.isNullOrEmpty()) {
                 quoteModel.postValue(result[0])
                 isLoading.postValue(false)
