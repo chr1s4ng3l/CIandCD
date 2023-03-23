@@ -4,11 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
 import com.cursokotlin.mvvmexample.databinding.ActivityMainBinding
 import com.cursokotlin.mvvmexample.ui.viewmodel.QuoteViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -24,13 +22,13 @@ class MainActivity : AppCompatActivity() {
 
         quoteViewModel.onCreate()
 
-        quoteViewModel.quoteModel.observe(this, Observer {
+        quoteViewModel.quoteModel.observe(this) {
             binding.tvQuote.text = it.quote
             binding.tvAuthor.text = it.author
-        })
-        quoteViewModel.isLoading.observe(this, Observer {
+        }
+        quoteViewModel.isLoading.observe(this) {
             binding.loading.isVisible = it
-        })
+        }
 
         binding.viewContainer.setOnClickListener { quoteViewModel.randomQuote() }
 
